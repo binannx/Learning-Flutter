@@ -14,9 +14,26 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  var randomNumber = 0;
-  var text = '???';
+   
+  var _randomNumber = 0;
+  var _text = '???';
+  var _alert = '';
+  final List<int> _randomNumberList = [];
   
+  void _generateRandom(){
+    setState( () { //para atualizar o estado do widget
+      _randomNumber = Random().nextInt(10) +1;
+      _text = _randomNumber.toString();
+
+      if(_randomNumberList.contains(_randomNumber)){
+        _alert = 'Número $_randomNumber já foi sorteado! 🫵🏼';
+      } else {
+        _alert = '';
+        _randomNumberList.add(_randomNumber);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,13 +66,25 @@ class _MainAppState extends State<MainApp> {
                     fontWeight: FontWeight.bold
                   ),
                 ),
-                Text('???',
+
+                Text(
+                  _text,
                   style: TextStyle(
                     color: Colors.black87,
                     fontSize: 120,
                     fontWeight: FontWeight.bold),
                 ),
-                ElevatedButton(onPressed: () {}, 
+
+                 Text(
+                  _alert,
+                  style: TextStyle(
+                    color: Color(0xff8716d5),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+                ),
+
+                ElevatedButton(
+                  onPressed: _generateRandom,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xff8716d5),
                     foregroundColor: Colors.white,
@@ -63,10 +92,20 @@ class _MainAppState extends State<MainApp> {
                     textStyle: TextStyle(
                       fontSize: 20, 
                       fontWeight: FontWeight.bold,
-                    )
+                    ),
+                  ),
+                
+                  child: Text('SORTE!')),
+
+                  Text(
+                  _randomNumberList.isEmpty ? ''
+                  :'Números já sorteados: \n${_randomNumberList.toString()}',
+                  style: TextStyle(
+                    color: Color(0xff8716d5),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
                 ),
-              child: Text('SORTE!')),
-              ]),
+            ]),
           )
           ),
       ),
