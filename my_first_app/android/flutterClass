@@ -1,0 +1,11 @@
+void main () { //tipagem por inferência
+  var name = 'Voyager I'; 
+  var year = 1977; 
+  var antennaDiameter = 3.7;
+  var isActive = true;
+  List<String> planets = ['jupiter', 'Saturn', 'Uranus'];
+  Map<String, String> image = {'tags': 'saturn', 'url': '//path'};
+
+  print('A sonda espacial ${name} foi lançada em ${year}!');
+
+}
