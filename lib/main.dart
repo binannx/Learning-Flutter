@@ -37,6 +37,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -54,6 +55,9 @@ class _MainAppState extends State<MainApp> {
         body: Center(
           child: Container(
             padding: EdgeInsets.fromLTRB(30, 50, 30, 100),
+            //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),            
+            //margin: EdgeInsets.only(top:50),//afastou o container pra baixo
+            //color: Colors.blueAccent,
             child: Column(
               spacing: 20,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -67,12 +71,17 @@ class _MainAppState extends State<MainApp> {
                   ),
                 ),
 
-                Text(
-                  _text,
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 120,
-                    fontWeight: FontWeight.bold),
+                Container(
+                  //color: Colors.amberAccent,
+                  padding: EdgeInsets.symmetric(horizontal: 50),
+                 
+                  child: Text(
+                    _text,
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 120,
+                      fontWeight: FontWeight.bold),
+                  ),
                 ),
 
                  Text(
@@ -107,6 +116,16 @@ class _MainAppState extends State<MainApp> {
                 ),
             ]),
           )
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                _randomNumberList.clear();
+                _text = '???';
+                _alert = '';              });
+            },
+            backgroundColor: Colors.white,
+            child: const Icon(Icons.refresh, color: Color(0xff8716d5)),
           ),
       ),
     );
