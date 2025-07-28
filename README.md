@@ -1,3 +1,2 @@
-# app1_sorte
+# Learning Flutter
 
-A new Flutter project.
