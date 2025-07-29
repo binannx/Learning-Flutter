@@ -1,3 +1,4 @@
+import 'package:app2_series/custom_drawer.dart';
 import 'package:app2_series/tv_show_card.dart';
 import 'package:app2_series/tv_show_data.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var color = Colors.deepOrange; 
+    var color = const Color.fromARGB(255, 141, 3, 146); 
 
     var colorScheme = ColorScheme.fromSeed(
-      seedColor: color, 
+      seedColor: color,
       brightness: Brightness.light
       );
 
@@ -27,22 +28,31 @@ class MainApp extends StatelessWidget {
 
     var customTheme = ThemeData(
       colorScheme: colorScheme,
-      fontFamily: GoogleFonts.indieFlower().fontFamily,
+      fontFamily: GoogleFonts.montserrat().fontFamily,
       appBarTheme: AppBarTheme(
         centerTitle: true,
-        toolbarHeight: 100,
+        toolbarHeight: 80,
         backgroundColor: colorScheme.primary,
         titleTextStyle: TextStyle(
-          fontSize: 40, 
+          fontSize: 50, 
           fontWeight: FontWeight.bold, 
-          color: colorScheme.primary,
-          fontFamily: GoogleFonts.indieFlower().fontFamily,
-        ),
-      ));
+          color: colorScheme.onPrimary,
+          fontFamily: GoogleFonts.caveat().fontFamily,
+        ),),
 
+      cardTheme: CardThemeData(
+        color: colorScheme.secondaryContainer,
+        shadowColor: colorScheme.onSurface,
+        elevation: 7,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+        ),
+        );
+
+    
       var customThemeDark = ThemeData(
       colorScheme: colorSchemeDark,
-      fontFamily: GoogleFonts.indieFlower().fontFamily,
+      fontFamily: GoogleFonts.montserrat().fontFamily,
       appBarTheme: AppBarTheme(
         centerTitle: true,
         toolbarHeight: 100,
@@ -50,17 +60,17 @@ class MainApp extends StatelessWidget {
         titleTextStyle: TextStyle(
           fontSize: 40, 
           fontWeight: FontWeight.bold, 
-          color: colorScheme.primary,
-          fontFamily: GoogleFonts.indieFlower().fontFamily,
+          color: colorSchemeDark.primary,
+          fontFamily: GoogleFonts.caveat().fontFamily,
         ),
       ),
 
       cardTheme: CardThemeData(
         color: colorSchemeDark.secondaryContainer,
-        shadowColor: colorSchemeDark.onSurface,
-        elevation: 3,
-        margin: EdgeInsets.symmetric(horizontal: 7, vertical: 7),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
+        shadowColor: colorScheme.onSurface,
+        elevation: 7,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical:10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
       ),
     );
 
@@ -70,7 +80,14 @@ class MainApp extends StatelessWidget {
       darkTheme: customThemeDark,
       themeMode: ThemeMode.system,
       home: Scaffold(
-        appBar: AppBar(title: const Text('Eu amo séries 🍿')),
+        appBar: AppBar(
+          title: const Text('Eu amo séries 🍿')),
+          drawer: DrawerButtonIcon(),
+
+        ),
+      );
+
+      
         /*body: ListView(
           children: [
             ...favTvShowList.map(
@@ -78,12 +95,6 @@ class MainApp extends StatelessWidget {
               ),
           ],
         ), */
-
-        body: ListView.builder(
-          itemCount: favTvShowList.length,
-          itemBuilder: (context, index) => TvShowCard(tvShow: favTvShowList[index], index: index),
-        )
-      ),
-    );
+        
   }
 }
