@@ -20,7 +20,7 @@ class TvShowCard extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: colorScheme.primary,
           child: Text((index+1).toString(),
-           style: GoogleFonts.questrial(
+           style: GoogleFonts.montserrat(
             color: colorScheme.onPrimary, 
             fontSize: 24, 
             fontWeight: FontWeight.bold)),
